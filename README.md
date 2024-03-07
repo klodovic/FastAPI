@@ -1,2 +1,2 @@
 # FastAPI
- Books REST API
+REST API
