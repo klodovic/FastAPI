@@ -1,44 +1,11 @@
+from Model.Book import *
+from Model.BookRequest import *
 from typing import Optional
 from fastapi import FastAPI, Path, Query, HTTPException
 from pydantic import BaseModel, Field
 from starlette import status
 
 app = FastAPI()
-
-class Book:
-    id: int
-    title: str
-    author: str
-    description: str
-    rating: int
-    published_date: int
-
-    def __init__(self, id, title, author, description, rating, published_date):
-        self.id = id
-        self.title = title
-        self.author = author
-        self.description = description
-        self.rating = rating
-        self.published_date = published_date
-
-class BookRequest(BaseModel):
-    id: Optional[int] = Field(None)
-    title: str = Field(min_length = 3)
-    author: str = Field(min_length=1)
-    description: str = Field(min_length=1, max_length=100)
-    rating: int = Field(gt= 0, lt=6)
-    published_date: int = Field(gt=1999, lt=2031)
-
-    class Config:
-        json_schema_extra = {
-            'example':{
-                'title': 'A new book',
-                'author': 'John Doe',
-                'description': 'A new description of the book',
-                'rating': 5,
-                'published_date': 2029
-            }
-        }
 
 BOOKS = [
     Book(1, 'Computer science', 'Jonh Doe', 'Bestseller', 5, 2020),
@@ -48,6 +15,7 @@ BOOKS = [
     Book(5, 'Spring Boot', 'Pantic', 'Great', 4, 2023)
 ]
 
+###End points###
 
 #Get all books
 @app.get("/books", status_code=status.HTTP_200_OK)
