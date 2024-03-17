@@ -5,7 +5,7 @@ class ToDoRequest(BaseModel):
     title: str = Field(min_length = 3)
     description: str = Field(min_length = 3, max_length=100)
     priority: int = Field(gt= 0, lt=6)
-    complite: bool
+    complete: bool
 
     class Config:
         json_schema_extra = {
