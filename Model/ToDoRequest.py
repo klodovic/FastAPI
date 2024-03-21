@@ -13,7 +13,7 @@ class ToDoRequest(BaseModel):
                 'title': 'A new Todo task',
                 'description': 'A new description of the to do task',
                 'priority': 5,
-                'complite': False
+                'complete': False
             }
         }
 
